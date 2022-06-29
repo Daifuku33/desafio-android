@@ -1,7 +1,5 @@
-package com.example.desafio_android.model
+package com.example.desafio_android.dto.model
 
-import com.example.desafio_android.model.License
-import com.example.desafio_android.model.Owner
 import com.google.gson.annotations.SerializedName
 
 data class Repository(

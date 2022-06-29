@@ -2,6 +2,9 @@ package com.example.desafio_android.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.example.desafio_android.R
 
 class MainActivity : AppCompatActivity() {
@@ -9,4 +12,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
 }

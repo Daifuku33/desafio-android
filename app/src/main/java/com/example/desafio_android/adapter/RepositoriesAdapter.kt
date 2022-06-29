@@ -2,12 +2,13 @@ package com.example.desafio_android.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.desafio_android.model.Repository
+import com.example.desafio_android.dto.model.Repository
 import androidx.recyclerview.widget.RecyclerView
 import com.example.desafio_android.databinding.RepositoryItemBinding
 
 class RepositoriesAdapter(
-    private var repos: ArrayList<Repository>
+    private var repos: ArrayList<Repository>,
+    private val listener: RecyclerViewClickListener
 ): RecyclerView.Adapter<RepositoriesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -18,6 +19,9 @@ class RepositoriesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(repos[position])
+        holder.binding.repositoriesLayout.setOnClickListener(){
+            listener.onRecyclerViewItemClick(position)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -34,5 +38,9 @@ class RepositoriesAdapter(
             binding.tvUserName.text = repository.owner.toString()
             /*pendiente avatar de usuario*/
         }
+    }
+
+    interface RecyclerViewClickListener {
+        fun onRecyclerViewItemClick(position: Int)
     }
 }

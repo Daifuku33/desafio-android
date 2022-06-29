@@ -1,4 +1,4 @@
-package com.example.desafio_android.model
+package com.example.desafio_android.dto.model
 
 import com.google.gson.annotations.SerializedName
 import java.util.ArrayList

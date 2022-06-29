@@ -1,8 +1,14 @@
-package com.example.desafio_android.model
+package com.example.desafio_android.dto.model
 
 import com.google.gson.annotations.SerializedName
 
 data class User(
+    @SerializedName("id")
+    val id: Int,
+    @SerializedName("login")
+    val login: String,
+    @SerializedName("node_id")
+    val nodeId: String,
     @SerializedName("avatar_url")
     val avatarUrl: String,
     @SerializedName("events_url")
@@ -17,12 +23,6 @@ data class User(
     val gravatarId: String,
     @SerializedName("html_url")
     val htmlUrl: String,
-    @SerializedName("id")
-    val id: Int,
-    @SerializedName("login")
-    val login: String,
-    @SerializedName("node_id")
-    val nodeId: String,
     @SerializedName("organizations_url")
     val organizationsUrl: String,
     @SerializedName("received_events_url")
