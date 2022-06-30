@@ -34,7 +34,7 @@ class RepositoriesAdapter(
             binding.tvRepName.text = repository.name
             binding.tvRepDescription.text = repository.description
             binding.tvForks.text = repository.forks.toString()
-            binding.tvStars.text = repository.stargazersCount.toString()
+            binding.tvStars.text = repository.stars.toString()
             binding.tvUserName.text = repository.owner.toString()
             /*pendiente avatar de usuario*/
         }
