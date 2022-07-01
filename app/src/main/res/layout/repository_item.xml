@@ -13,9 +13,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_weight="0.3"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp">
         <TextView
             android:id="@+id/tv_repName"
             android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="10dp">
         <ImageView
-            android:id="@+id/iv_owner"
+            android:id="@+id/iv_userIcon"
             android:layout_width="60dp"
             android:layout_height="60dp"/>
         <TextView
@@ -97,9 +97,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/rep_user"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:textColor="@color/blue"
             android:textSize="15sp"/>
     </LinearLayout>
-
 </LinearLayout>

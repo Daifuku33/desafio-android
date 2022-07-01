@@ -2,5 +2,5 @@
     <string name="app_name">desafio-android</string>
     <string name="rep_name">Nombre del Repositorio</string>
     <string name="rep_desription">Aquí va el detalle o la descripción del repositorio. Aquí va el detalle o la descripción del repositorio.</string>
-    <string name="rep_user">UserName</string>
+    <string name="rep_user">Nombre de Usuario</string>
 </resources>

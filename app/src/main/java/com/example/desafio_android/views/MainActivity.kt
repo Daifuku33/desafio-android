@@ -2,28 +2,34 @@ package com.example.desafio_android.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
-import com.example.desafio_android.R
-import com.example.desafio_android.adapter.RepositoriesAdapter
+import androidx.activity.viewModels
 import com.example.desafio_android.databinding.ActivityMainBinding
+import com.example.desafio_android.viewModel.MainViewModel
+import com.example.desafio_android.viewModel.ViewModelFactory
 
-class MainActivity : AppCompatActivity(), RepositoriesAdapter.RecyclerViewClickListener {
-    private val adapterRepository = RepositoriesAdapter(ArrayList(), this)
+class MainActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityMainBinding
+    private val viewModel: MainViewModel by viewModels(
+        factoryProducer = { ViewModelFactory() }
+    )
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding  = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        viewModel.getRepos()
+
+
+
+        /*usar el adapter aqui par ver los repos*/
+
+        viewModel.repos.observe(this) {value ->
+            if (value != null) {
+                adapter
+            }
+        }
     }
-
-
-
-    override fun onRecyclerViewItemClick(position: Int) {
-        TODO("Not yet implemented")
-    }
-
 }
