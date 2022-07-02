@@ -12,23 +12,22 @@ import com.example.desafio_android.viewModel.MainViewModel
 import com.example.desafio_android.viewModel.ViewModelFactory
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
+    private var page = 1
     private val viewModel: MainViewModel by viewModels(
         factoryProducer = { ViewModelFactory() }
     )
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding  = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.getRepos()
-
         binding.repositoryList.layoutManager = LinearLayoutManager(this)
         val adapter = RepoAdapter(emptyList())
         binding.repositoryList.adapter = adapter
+
+        viewModel.getRepos(page)
 
         /*usar el adapter aqui par ver los repos*/
         viewModel.repos.observe(this) {value ->
@@ -44,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             binding.progressBar.visibility = if (value) View.VISIBLE else View.GONE
         }
 
-        /*errores en pantalla*/
+        /*errores en pantalla en caso de llegar*/
         viewModel.error.observe(this) { value ->
             if (value != null) {
                 Toast.makeText(this, value, Toast.LENGTH_LONG).show()

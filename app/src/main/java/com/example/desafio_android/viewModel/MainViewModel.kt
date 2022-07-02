@@ -7,6 +7,7 @@ import com.example.desafio_android.data.RepositoryResponse
 import com.example.desafio_android.data.ResponseListener
 import com.example.desafio_android.data.repos.RepoRepository
 import com.example.desafio_android.model.Repo
+import com.example.desafio_android.model.SearchResponse
 
 class MainViewModel(
     private val repository: RepoRepository
@@ -15,23 +16,18 @@ class MainViewModel(
     val loading = MutableLiveData<Boolean>(false)
     val error = MutableLiveData<String?>(null)
 
-    fun getRepos(){
+    fun getRepos(page: Int){
         error.value = null
         repos.value = null
         loading.value = true
 
-        repository.getRepos(object: ResponseListener<List<Repo>>{
-            override fun onResponse(response: RepositoryResponse<List<Repo>>) {
-                val reposResponse = response.data
-
-                error.value = null
-                repos.value = reposResponse
-                loading.value = false
+        repository.getRepos(page, object: ResponseListener{
+            override fun onResponse(response: SearchResponse) {
+                repos.value = response.items
             }
 
             override fun onError(repositoryError: RepositoryError) {
-                val message = "${repositoryError.message}"
-
+                val message = repositoryError.message
                 error.value = message
                 repos.value = null
                 loading.value = false
