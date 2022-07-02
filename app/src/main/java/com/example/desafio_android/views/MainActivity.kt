@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.OrientationHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.desafio_android.adapter.RepoAdapter
 import com.example.desafio_android.databinding.ActivityMainBinding
 import com.example.desafio_android.viewModel.MainViewModel
@@ -14,6 +17,7 @@ import com.example.desafio_android.viewModel.ViewModelFactory
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var page = 1
+
     private val viewModel: MainViewModel by viewModels(
         factoryProducer = { ViewModelFactory() }
     )
@@ -25,9 +29,21 @@ class MainActivity : AppCompatActivity() {
 
         binding.repositoryList.layoutManager = LinearLayoutManager(this)
         val adapter = RepoAdapter(emptyList())
-        binding.repositoryList.adapter = adapter
+        binding.repositoryList.addItemDecoration(DividerItemDecoration(this, OrientationHelper.VERTICAL))
 
         viewModel.getRepos(page)
+
+        /*llenar lista cuando se scrollea*/
+        binding.repositoryList.addOnScrollListener(object: RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if(dy > 0) {
+                    if(!binding.repositoryList.canScrollVertically(1)) {
+                        page++
+                        viewModel.getRepos(page)
+                    }
+                }
+            }
+        })
 
         /*usar el adapter aqui par ver los repos*/
         viewModel.repos.observe(this) {value ->
@@ -49,5 +65,6 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, value, Toast.LENGTH_LONG).show()
             }
         }
+
     }
 }

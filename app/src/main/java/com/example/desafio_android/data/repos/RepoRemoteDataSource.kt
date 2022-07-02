@@ -1,7 +1,6 @@
 package com.example.desafio_android.data.repos
 
 import com.example.desafio_android.data.*
-import com.example.desafio_android.model.Repo
 import com.example.desafio_android.model.SearchResponse
 import retrofit2.Call
 import retrofit2.Callback

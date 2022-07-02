@@ -34,8 +34,8 @@ class RepoAdapter(
         fun bind(repo: Repo){
             binding.tvRepName.text = repo.name
             binding.tvRepDescription.text = repo.description
-            binding.tvForks.text = repo.forks.toString()
-            binding.tvStars.text = repo.stars.toString()
+            binding.tvForks.text = repo.forksCount.toString()
+            binding.tvStars.text = repo.forksCount.toString()
             binding.tvUserName.text = repo.owner.toString()
             /*pendiente avatar de usuario con glide*/
         }

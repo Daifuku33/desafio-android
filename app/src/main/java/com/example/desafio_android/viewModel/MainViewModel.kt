@@ -3,7 +3,6 @@ package com.example.desafio_android.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.desafio_android.data.RepositoryError
-import com.example.desafio_android.data.RepositoryResponse
 import com.example.desafio_android.data.ResponseListener
 import com.example.desafio_android.data.repos.RepoRepository
 import com.example.desafio_android.model.Repo
