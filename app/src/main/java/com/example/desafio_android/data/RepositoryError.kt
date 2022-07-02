@@ -1,7 +1,10 @@
 package com.example.desafio_android.data
 
-class RepositoryError (
+import com.google.gson.annotations.SerializedName
+
+data class RepositoryError(
+    @SerializedName("message")
     val message: String,
-    val code: Int,
-    val source: Source
-    )
+    @SerializedName("errors")
+    val errors: Error?
+)

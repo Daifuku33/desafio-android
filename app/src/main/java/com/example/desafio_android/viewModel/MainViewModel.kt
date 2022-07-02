@@ -1,19 +1,12 @@
 package com.example.desafio_android.viewModel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.desafio_android.data.RepositoryError
 import com.example.desafio_android.data.RepositoryResponse
 import com.example.desafio_android.data.ResponseListener
 import com.example.desafio_android.data.repos.RepoRepository
-import com.example.desafio_android.old.dto.InitRetrofitService
-import com.example.desafio_android.old.dto.model.Repos
 import com.example.desafio_android.model.Repo
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.util.*
 
 class MainViewModel(
     private val repository: RepoRepository
@@ -37,7 +30,7 @@ class MainViewModel(
             }
 
             override fun onError(repositoryError: RepositoryError) {
-                val message = "${repositoryError.message} (code: ${repositoryError.code}"
+                val message = "${repositoryError.message}"
 
                 error.value = message
                 repos.value = null

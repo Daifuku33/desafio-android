@@ -2,7 +2,11 @@ package com.example.desafio_android.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.desafio_android.adapter.RepoAdapter
 import com.example.desafio_android.databinding.ActivityMainBinding
 import com.example.desafio_android.viewModel.MainViewModel
 import com.example.desafio_android.viewModel.ViewModelFactory
@@ -22,13 +26,28 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getRepos()
 
-
+        binding.repositoryList.layoutManager = LinearLayoutManager(this)
+        val adapter = RepoAdapter(emptyList())
+        binding.repositoryList.adapter = adapter
 
         /*usar el adapter aqui par ver los repos*/
-
         viewModel.repos.observe(this) {value ->
             if (value != null) {
-                adapter
+               adapter.setRepos(value)
+            } else {
+                adapter.setRepos(emptyList())
+            }
+        }
+
+        /*visibilidad de la progress bar*/
+        viewModel.loading.observe(this) { value ->
+            binding.progressBar.visibility = if (value) View.VISIBLE else View.GONE
+        }
+
+        /*errores en pantalla*/
+        viewModel.error.observe(this) { value ->
+            if (value != null) {
+                Toast.makeText(this, value, Toast.LENGTH_LONG).show()
             }
         }
     }

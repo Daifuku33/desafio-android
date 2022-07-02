@@ -1,9 +1,10 @@
 package com.example.desafio_android.data
 
-interface ResponseListener<T> {
+import com.example.desafio_android.model.SearchResponse
 
-    fun onResponse(response: RepositoryResponse<T>)
+interface ResponseListener {
 
+    fun onResponse(response: SearchResponse)
     fun onError(repositoryError: RepositoryError)
 
 }
